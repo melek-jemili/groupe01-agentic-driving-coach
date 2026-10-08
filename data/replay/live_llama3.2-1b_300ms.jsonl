@@ -1,0 +1,28 @@
+# Live-recorded inference trace: llama3.2:1b, stop-sign, beginner driver,
+# 300 ms deadline. Recorded 2026-08-11 on a workstation GPU (NVIDIA RTX 3060,
+# Ollama 0.32.5, temperature 0, seed and prompt as shipped). Replay with:
+#   coach run --scenario stop-sign --driver beginner --coach replay \
+#       --trace data/replay/live_llama3.2-1b_300ms.jsonl --fast --output ...
+# Deterministic under replay; misses, fallbacks, and late discards reproduce
+# exactly as recorded.
+{"request_id": 0, "logical_elapsed_ms": 500.0, "distance_m": 98.98, "velocity_mps": 10.2, "raw_response": "NONE|", "latency_ms": 470.156888004567, "error": null, "deadline_miss": true}
+{"request_id": 1, "logical_elapsed_ms": 1000.0, "distance_m": 93.637, "velocity_mps": 10.819999999999997, "raw_response": "NONE|", "latency_ms": 356.0818730038591, "error": null, "deadline_miss": true}
+{"request_id": 2, "logical_elapsed_ms": 1400.0, "distance_m": 89.242, "velocity_mps": 11.239999999999995, "raw_response": "NONE|", "latency_ms": 303.9365069998894, "error": null, "deadline_miss": true}
+{"request_id": 3, "logical_elapsed_ms": 1800.0, "distance_m": 84.546, "velocity_mps": 12.039999999999992, "raw_response": "NONE|", "latency_ms": 326.9589699993958, "error": null, "deadline_miss": true}
+{"request_id": 4, "logical_elapsed_ms": 2200.0, "distance_m": 79.587, "velocity_mps": 12.45999999999999, "raw_response": "NONE|", "latency_ms": 349.77396500471514, "error": null, "deadline_miss": true}
+{"request_id": 5, "logical_elapsed_ms": 2600.674366998789, "distance_m": 74.605, "velocity_mps": 12.43999999999999, "raw_response": "NONE|", "latency_ms": 282.71263300121063, "error": null, "deadline_miss": false}
+{"request_id": 6, "logical_elapsed_ms": 2900.0, "distance_m": 70.867, "velocity_mps": 12.46999999999999, "raw_response": "NONE|", "latency_ms": 365.75810199428815, "error": null, "deadline_miss": true}
+{"request_id": 7, "logical_elapsed_ms": 3300.0, "distance_m": 65.88900000000001, "velocity_mps": 12.42999999999999, "raw_response": "NONE|", "latency_ms": 324.2041789999348, "error": null, "deadline_miss": true}
+{"request_id": 8, "logical_elapsed_ms": 3700.0, "distance_m": 60.92700000000001, "velocity_mps": 12.389999999999992, "raw_response": "NONE| distance_to_stop=60.93m, velocity=12.39m/s", "latency_ms": 472.3323520011036, "error": null, "deadline_miss": true}
+{"request_id": 9, "logical_elapsed_ms": 4200.0, "distance_m": 54.74700000000001, "velocity_mps": 12.339999999999993, "raw_response": "NONE|", "latency_ms": 394.61208000284387, "error": null, "deadline_miss": true}
+{"request_id": 10, "logical_elapsed_ms": 4600.0, "distance_m": 49.82100000000001, "velocity_mps": 12.299999999999994, "raw_response": "NONE|", "latency_ms": 374.7318940004334, "error": null, "deadline_miss": true}
+{"request_id": 11, "logical_elapsed_ms": 5000.659345998091, "distance_m": 44.911000000000016, "velocity_mps": 12.259999999999994, "raw_response": "NONE|", "latency_ms": 289.1026540019084, "error": null, "deadline_miss": false}
+{"request_id": 12, "logical_elapsed_ms": 5300.0, "distance_m": 41.23900000000002, "velocity_mps": 12.229999999999995, "raw_response": "NONE|", "latency_ms": 335.98442900256487, "error": null, "deadline_miss": true}
+{"request_id": 13, "logical_elapsed_ms": 5700.0, "distance_m": 36.35700000000002, "velocity_mps": 12.189999999999996, "raw_response": "NONE|", "latency_ms": 331.8412270018598, "error": null, "deadline_miss": true}
+{"request_id": 14, "logical_elapsed_ms": 6100.0, "distance_m": 31.491000000000025, "velocity_mps": 12.149999999999997, "raw_response": "NONE|", "latency_ms": 319.3283119981061, "error": null, "deadline_miss": true}
+{"request_id": 15, "logical_elapsed_ms": 6500.0, "distance_m": 26.639000000000024, "velocity_mps": 12.129999999999997, "raw_response": "NONE|", "latency_ms": 378.19006299832836, "error": null, "deadline_miss": true}
+{"request_id": 16, "logical_elapsed_ms": 6900.0, "distance_m": 21.793000000000028, "velocity_mps": 12.109999999999998, "raw_response": "NONE|", "latency_ms": 313.5874369982048, "error": null, "deadline_miss": true}
+{"request_id": 17, "logical_elapsed_ms": 7300.0, "distance_m": 16.953000000000028, "velocity_mps": 12.089999999999998, "raw_response": "NONE| distance_to_stop=16.95m, velocity=12.09m/s", "latency_ms": 405.60922299482627, "error": null, "deadline_miss": true}
+{"request_id": 18, "logical_elapsed_ms": 7800.0, "distance_m": 10.998000000000028, "velocity_mps": 11.189999999999998, "raw_response": "NONE|", "latency_ms": 353.5036109969951, "error": null, "deadline_miss": true}
+{"request_id": 19, "logical_elapsed_ms": 8200.0, "distance_m": 6.5240000000000276, "velocity_mps": 11.189999999999998, "raw_response": "NONE|", "latency_ms": 375.77675000648014, "error": null, "deadline_miss": true}
+{"request_id": 20, "logical_elapsed_ms": 8600.569516997633, "distance_m": 2.052000000000028, "velocity_mps": 11.169999999999998, "raw_response": "NONE|", "latency_ms": 284.95448300236603, "error": null, "deadline_miss": false}

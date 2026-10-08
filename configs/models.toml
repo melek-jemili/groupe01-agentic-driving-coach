@@ -1,0 +1,26 @@
+# Model configuration for the live Ollama coach.
+#
+# Defaults live in [model]; per-model overrides go in [models."<name>"] tables
+# and are merged when that model is selected (--model <name>).
+# The Ollama host resolves as: --host flag > $OLLAMA_HOST > http://127.0.0.1:11434
+#
+# This lab never requires a model larger than ~4B parameters.
+
+[model]
+model = "llama3.2:3b"    # default live model
+deadline_ms = 300.0      # inference deadline; fallback fires when exceeded
+temperature = 0.0        # deterministic-as-practical sampling
+num_predict = 30         # hard cap on generated tokens
+seed = 42                # fixed seed (honored by Ollama when supported)
+request_timeout_s = 30.0 # HTTP timeout for one in-run chat call
+warmup_timeout_s = 300.0 # bound for the pre-run model load; cold loads on
+                         # shared filesystems (e.g. Sol scratch) take minutes
+keep_alive = "30m"       # pin the model in server memory between requests
+                         # and benchmark repetitions
+
+# Suggested smaller comparison model for Part 3 of the lab.
+[models."llama3.2:1b"]
+deadline_ms = 300.0
+
+[models."llama3.2:3b"]
+deadline_ms = 300.0

@@ -1,0 +1,45 @@
+# Virtual environments
+.venv/
+venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Tool caches
+.p[y]test_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Generated experiment outputs (keep the directory, not the results)
+results/*
+!results/.gitkeep
+
+# Submission archives
+submission/*.zip
+submission/*.tar.gz
+
+# Model weights and caches - never commit these
+*.gguf
+*.safetensors
+.ollama/
+ollama/
+ollama-models/
+ollama-linux-*.tar.*
+
+# Container images
+*.sif
+
+# Scheduler output and temporary logs
+slurm-*.out
+slurm-*.err
+*.log
+*.tmp
+
+# Editor and OS noise
+.vscode/
+.idea/
+.DS_Store

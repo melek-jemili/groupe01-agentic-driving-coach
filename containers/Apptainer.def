@@ -1,0 +1,61 @@
+# Apptainer definition for Embodied AI Lab - Agentic Driving Coach.
+#
+# Ubuntu 22.04 provides the manylinux_2_34 userspace the Xronos 0.13 wheels
+# need (Sol's Rocky Linux 8 host glibc is too old). The image contains the
+# project's Python runtime only:
+#   - no model weights (students pull Ollama models into scratch),
+#   - no Ollama server (students install the host-side binary in scratch),
+#   - no dashboard or telemetry receiver.
+#
+# Build (~10 min):   apptainer build agentic-driving-coach.sif containers/Apptainer.def
+# Verify offline:    apptainer run agentic-driving-coach.sif doctor
+#
+# The project source is bind-mounted from the host at run time (run `apptainer
+# exec` from the repo root), so students can edit code without rebuilding.
+
+Bootstrap: docker
+From: ubuntu:22.04
+
+%post
+    set -eu
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update
+    apt-get install -y --no-install-recommends \
+        python3 python3-venv python3-pip git ca-certificates curl
+    rm -rf /var/lib/apt/lists/*
+
+    python3 -m venv /opt/agentic-driving-coach-venv
+    /opt/agentic-driving-coach-venv/bin/pip install --no-cache-dir --upgrade pip
+
+    # Pinned runtime dependencies, kept in sync with pyproject.toml.
+    /opt/agentic-driving-coach-venv/bin/pip install --no-cache-dir \
+        "xronos==0.13.1" \
+        "matplotlib>=3.8,<4" \
+        "ollama>=0.4,<1" \
+        "tomli>=2.0"
+
+%environment
+    export PATH=/opt/agentic-driving-coach-venv/bin:$PATH
+    export MPLBACKEND=Agg
+    export PYTHONUNBUFFERED=1
+
+%runscript
+    # When invoked from the repo root, use the bind-mounted source tree
+    # because the SIF is read-only and carries only runtime dependencies.
+    if [ -d src/agentic_driving_coach ]; then export PYTHONPATH="src${PYTHONPATH:+:$PYTHONPATH}"; fi
+    exec python -m agentic_driving_coach "$@"
+
+%test
+    python -c "import xronos, matplotlib, ollama; print('container OK: xronos', __import__('importlib.metadata', fromlist=['version']).version('xronos'))"
+
+%labels
+    Maintainer CSE 494/598 course staff, ASU KIM Lab
+    Purpose Agentic Driving Coach runtime (headless)
+
+%help
+    Always work from the repo root (the source tree is bind-mounted; the
+    read-only image carries only the dependencies).
+      Project CLI:  apptainer run agentic-driving-coach.sif doctor
+      Shell:        apptainer exec agentic-driving-coach.sif bash
+                    (then: export PYTHONPATH=src before python -m agentic_driving_coach ...)
+    See README.md for the complete Sol workflow, including live Ollama runs.

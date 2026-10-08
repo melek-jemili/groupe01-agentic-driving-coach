@@ -1,0 +1,19 @@
+# Convenience configuration for the replay smoke run:
+#
+#   python -m agentic_driving_coach run --scenario stop-sign --driver beginner \
+#       --coach replay --trace data/replay/example_trace.jsonl --fast \
+#       --config configs/replay_example.toml --output results/replay
+#
+# Identical to stop_sign.toml and separate so replay settings can be changed
+# without touching the main scenario file.
+
+[scenario]
+name = "stop-sign"
+initial_distance_m = 100.0
+initial_velocity_mps = 10.0
+driver_period_ms = 100
+driver_to_car_delay_ms = 500
+coach_to_car_delay_ms = 200
+warning_throttle_s = 1.0
+max_duration_s = 30.0
+shutdown_grace_s = 1.0

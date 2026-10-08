@@ -1,0 +1,24 @@
+# Stop-sign scenario configuration (paper defaults).
+# CLI flags override these values. Distances use meters and times use seconds
+# unless the key names milliseconds explicitly.
+
+[scenario]
+name = "stop-sign"
+initial_distance_m = 100.0     # stop sign starts 100 m ahead
+initial_velocity_mps = 10.0    # initial car velocity
+driver_period_ms = 100         # driver behavior update period (also the physics dt)
+driver_to_car_delay_ms = 500   # logical delay: driver controls -> car
+coach_to_car_delay_ms = 200    # logical delay: coach emergency actuation -> car
+warning_throttle_s = 1.0       # at most ~1 spoken warning per second
+max_duration_s = 30.0          # hard logical timeout; every run terminates
+shutdown_grace_s = 1.0         # settle time after the driver trace ends
+
+# Boundaries of the deterministic stop-sign policy.
+[scenario.policy]
+actuate_max_distance_m = 25.0
+actuate_min_velocity_mps = 2.5
+mid_band_min_distance_m = 50.0
+mid_band_max_distance_m = 60.0
+mid_band_velocity_mps = [8.0, 10.0]
+far_min_distance_m = 99.0
+far_band_velocity_mps = [8.0, 12.0]
